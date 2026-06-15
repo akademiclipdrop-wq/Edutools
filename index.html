@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkcell Akademi Tasarım Üssü</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #0d4ba0, #07377e, #0080bc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            color: #ffffff;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 60px 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 1200px; 
+            width: 100%;
+        }
+
+        .main-logo {
+            height: 60px;
+            margin-bottom: 25px;
+            object-fit: contain;
+            filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.2));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .main-logo:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0px 0px 25px rgba(255,255,255,0.4));
+        }
+
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 50px;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #ffc40c, #ffffff, #00aee9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #e2e8f0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 30px 15px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 196, 12, 0.05);
+            cursor: pointer;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 196, 12, 0.5);
+            box-shadow: 0 15px 30px rgba(96, 165, 250, 0.15);
+            color: #ffffff;
+        }
+
+        .app-logo {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 18px;
+            object-fit: contain; 
+            filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.4));
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover .app-logo {
+            transform: scale(1.15);
+            filter: drop-shadow(0px 10px 15px rgba(255, 255, 255, 0.3));
+        }
+
+        .app-name {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: linear-gradient(145deg, #07377e, #0d4ba0);
+            border: 1px solid rgba(255, 196, 12, 0.3);
+            border-radius: 24px; padding: 40px; width: 90%; max-width: 600px;
+            position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5); text-align: left;
+        }
+        .close-btn {
+            position: absolute; top: 20px; right: 25px; font-size: 28px; font-weight: bold;
+            color: #ffffff; cursor: pointer; transition: 0.3s;
+        }
+        .close-btn:hover { color: #ffc40c; }
+        .modal h2 { margin-top: 0; color: #ffffff; font-size: 24px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px; margin-bottom: 20px; }
+        
+        .doc-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .doc-item {
+            display: flex; align-items: center; justify-content: space-between; padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05); border-radius: 12px; color: #f8fafc;
+            text-decoration: none; font-weight: 500; border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .doc-item:hover {
+            background: rgba(255, 196, 12, 0.15); border-color: rgba(255, 196, 12, 0.4);
+            color: #ffffff;
+        }
+        .doc-info-wrapper { display: flex; align-items: center; }
+        .doc-icon { font-size: 20px; margin-right: 15px; }
+
+        .download-icon {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.2));
+        }
+        .doc-item:hover .download-icon {
+            color: #ffc40c;
+            transform: translateY(2px);
+            filter: drop-shadow(0px 0px 8px rgba(255, 196, 12, 0.6));
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 40px 20px; }
+            .app-grid { gap: 15px; grid-template-columns: repeat(2, 1fr); }
+            h1 { font-size: 26px; }
+            .main-logo { height: 50px; }
+            .modal-content { max-width: 95%; padding: 30px 20px; }
+            .doc-item { font-size: 14px; padding: 12px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="https://tag.turkcell.com.tr" target="_blank">
+            <img src="turkcell_logo.png" alt="Turkcell Logo" class="main-logo">
+        </a>
+
+        <h1>Eğitim Tasarım Uygulamaları</h1>
+        
+        <div class="app-grid">
+            
+            <a id="dokumanlarBtn" class="app-card" style="border-color: rgba(255, 196, 12, 0.3); background: rgba(255, 196, 12, 0.05);">
+                <div class="app-logo" style="display:flex; justify-content:center; align-items:center; font-size:40px;">📁</div>
+                <span class="app-name">Dokümanlar</span>
+            </a>
+
+            <a href="https://create.kahoot.it/auth/login?scope=openid&response_type=code&code_challenge_method=S256&redirect_uri=https%3A%2F%2Fkahoot.com%2Foauth2%2Fauthenticated&state=b377af72b9dd43b6af9233221c2eb6fd&client_id=163FPNOHnEYwB86ip2k71x1Hc1k4Gtg50YuM&code_challenge=_T1ZLkSiJ-uexLTh499L4yGVuwpaVtEKFBvfOYDiIck" target="_blank" class="app-card">
+                <img src="kahoot_logo.png" alt="Kahoot" class="app-logo">
+                <span class="app-name">Kahoot</span>
+            </a>
+
+            <a href="https://www.mentimeter.com/login" target="_blank" class="app-card">
+                <img src="mentimeter_logo.png" alt="Mentimeter" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=Mentimeter&background=random&color=fff'">
+                <span class="app-name">Mentimeter</span>
+            </a>
+
+            <a href="https://padlet.com/auth/login" target="_blank" class="app-card">
+                <img src="padlet_logo.png" alt="Padlet" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=Padlet&background=random&color=fff'">
+                <span class="app-name">Padlet</span>
+            </a>
+
+            <a href="https://admin.typeform.com/login/" target="_blank" class="app-card">
+                <img src="typeform_logo.png" alt="Typeform" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=Typeform&background=random&color=fff'">
+                <span class="app-name">Typeform</span>
+            </a>
+
+            <a href="https://www.edrawmind.com/app/create?_gl=1*d3dcb4*_ga*MzMyOTUxNDAzLjE3NTIxMzE3NjM.*_ga_24WTSJBD5B*czE3NTIxMzE3NjMkbzEkZzAkdDE3NTIxMzE3NzYkajYwJGwwJGgxMjk2NTkwODgx*_gcl_au*MTg3NTAzMDU1NS4xNzUyMTMxNzU3" target="_blank" class="app-card">
+                <img src="mindmap_logo.png" alt="Mindmap" class="app-logo" style="border-radius:15px;" onerror="this.src='https://ui-avatars.com/api/?name=Mindmap&background=random&color=fff'">
+                <span class="app-name">Mindmap Manager</span>
+            </a>
+
+            <a href="https://kling.ai/app" target="_blank" class="app-card">
+                <img src="kling_logo.png" alt="Kling AI" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=Kling+AI&background=random&color=fff'">
+                <span class="app-name">Kling AI</span>
+            </a>
+
+            <a href="https://www.midjourney.com/explore?tab=top" target="_blank" class="app-card">
+                <img src="midjourney_logo.png" alt="Midjourney" class="app-logo">
+                <span class="app-name">Midjourney</span>
+            </a>
+
+            <a href="https://elevenlabs.io/app/sign-in" target="_blank" class="app-card">
+                <img src="elevenlabs_logo.png" alt="ElevenLabs" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=ElevenLabs&background=random&color=fff'">
+                <span class="app-name">ElevenLabs</span>
+            </a>
+
+            <a href="https://www.iloveimg.com/tr" target="_blank" class="app-card">
+                <img src="ilove_logo.png" alt="I Love Image" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=ElevenLabs&background=random&color=fff'">
+                <span class="app-name">I Love Image</span>
+            </a>
+
+             <a href="https://www.canva.com/tr_tr/login/" target="_blank" class="app-card">
+                <img src="canva_logo.png" alt="Canva" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=ElevenLabs&background=random&color=fff'">
+                <span class="app-name">Canva</span>
+            </a>
+
+             <a href="https://openclipart.org/" target="_blank" class="app-card">
+                <img src="clipart_logo.png" alt="Clip Art" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=ElevenLabs&background=random&color=fff'">
+                <span class="app-name">Clip Art</span>
+            </a>
+
+             <a href="hesaplar.html" target="_blank" class="app-card">
+                <img src="personel_logo.png" alt="Kullanıcı Bilgileri" class="app-logo" onerror="this.src='https://ui-avatars.com/api/?name=ElevenLabs&background=random&color=fff'">
+                <span class="app-name">Kullanıcı Bilgileri</span>
+            </a>
+            
+        </div>
+    </div>
+
+    <div id="dokumanModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>📂 Kurumsal Dokümanlar</h2>
+            <div class="doc-list">
+                
+                <a href="Documents/Akademi-20.yıl_beyaz.png" download class="doc-item">
+                    <div class="doc-info-wrapper">
+                        <span class="doc-icon">🖼️</span> Akademi 20.Yıl Beyaz Logo (PNG)
+                    </div>
+                    <span class="download-icon">📥</span>
+                </a>
+                
+                <a href="Documents/Akademi-20.yıl_mavi.png" download class="doc-item">
+                    <div class="doc-info-wrapper">
+                        <span class="doc-icon">🖼️</span> Akademi 20.Yıl Mavi Logo (PNG)
+                    </div>
+                    <span class="download-icon">📥</span>
+                </a>
+                
+                <a href="Documents/Turkcell Akademi Intro 2025.mp4" download class="doc-item">
+                    <div class="doc-info-wrapper">
+                        <span class="doc-icon">🎬</span> Turkcell Akademi Intro (MP4)
+                    </div>
+                    <span class="download-icon">📥</span>
+                </a>
+                
+                <a href="Documents/Turkcell Topçik.png" download class="doc-item">
+                    <div class="doc-info-wrapper">
+                        <span class="doc-icon">🖼️</span> Turkcell Topçik (PNG)
+                    </div>
+                    <span class="download-icon">📥</span>
+                </a>
+                
+                <a href="Documents/Turkcell_Akademi-Beyaz_Transparent.png" download class="doc-item">
+                    <div class="doc-info-wrapper">
+                        <span class="doc-icon">🖼️</span> Akademi Beyaz Logo (PNG)
+                    </div>
+                    <span class="download-icon">📥</span>
+                </a>
+                
+                <a href="Documents/Turkcell_Akademi-Laci_Transparent.png" download class="doc-item">
+                    <div class="doc-info-wrapper">
+                        <span class="doc-icon">🖼️</span> Akademi Laci Logo (PNG)
+                    </div>
+                    <span class="download-icon">📥</span>
+                </a>
+                
+                <a href="Documents/Turkcell_logo_beyaz.png" download class="doc-item">
+                    <div class="doc-info-wrapper">
+                        <span class="doc-icon">🖼️</span> Turkcell Logo Beyaz (PNG)
+                    </div>
+                    <span class="download-icon">📥</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("dokumanModal");
+        var btn = document.getElementById("dokumanlarBtn");
+        var span = document.getElementsByClassName("close-btn")[0];
+
+        btn.onclick = function(e) { 
+            e.preventDefault();
+            modal.style.display = "flex"; 
+        }
+
+        span.onclick = function() { 
+            modal.style.display = "none"; 
+        }
+
+        window.onclick = function(event) { 
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
