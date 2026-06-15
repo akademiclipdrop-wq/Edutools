@@ -113,7 +113,9 @@
             letter-spacing: 0.5px;
         }
 
-        /* ORTAK MODAL CSS */
+        /* ------------------------------------------- */
+        /* TAMAMEN EŞİTLENMİŞ ORTAK PENCERE (MODAL) CSS*/
+        /* ------------------------------------------- */
         .modal {
             display: none; 
             position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
@@ -125,17 +127,11 @@
             background: linear-gradient(145deg, #07377e, #0d4ba0);
             border: 1px solid rgba(255, 196, 12, 0.3);
             border-radius: 24px; padding: 40px; width: 90%; 
-            max-width: 600px;
+            max-width: 800px; /* Tablo ve Listeler İçin Ortak Genişlik */
             position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5); text-align: left;
             max-height: 90vh;
             overflow-y: auto;
-        }
-        
-        .modal-content.wide-modal {
-            max-width: 800px; /* Sadeleştiği için biraz daralttık */
-            background: #F9FAFB; 
-            color: #18181B; 
-            padding: 30px;
+            color: #ffffff; /* İki pencerede de ortak beyaz yazı */
         }
 
         .close-btn {
@@ -143,13 +139,14 @@
             color: #ffffff; cursor: pointer; transition: 0.3s;
             z-index: 10;
         }
-        .wide-modal .close-btn { color: #71717A; }
         .close-btn:hover { color: #ffc40c; }
         
-        .modal h2 { margin-top: 0; font-size: 24px; padding-bottom: 15px; margin-bottom: 20px; }
-        .modal-content:not(.wide-modal) h2 { color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .modal h2 { 
+            margin-top: 0; font-size: 24px; padding-bottom: 15px; margin-bottom: 20px;
+            color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
 
-        /* DOKÜMANLAR MODALI ÖZEL CSS */
+        /* DOKÜMANLAR İÇERİK STİLLERİ */
         .doc-list { display: flex; flex-direction: column; gap: 12px; }
         .doc-item {
             display: flex; align-items: center; justify-content: space-between; padding: 15px 20px;
@@ -167,73 +164,66 @@
         .download-icon { font-size: 18px; color: rgba(255, 255, 255, 0.6); transition: all 0.3s ease; filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.2)); }
         .doc-item:hover .download-icon { color: #ffc40c; transform: translateY(2px); filter: drop-shadow(0px 0px 8px rgba(255, 196, 12, 0.6)); }
 
-        /* HESAPLAR MODALI ÖZEL CSS */
-        :root {
-            --canvas: #F9FAFB; --surface: #FFFFFF; --ink: #18181B; --steel: #71717A;
-            --muted: #94A3B8; --border: rgba(226,232,240,0.6); --shadow: rgba(0,0,0,0.05);
-            --blue: #3B82F6; --blue-bg: rgba(59,130,246,0.07); --blue-soft: rgba(59,130,246,0.12);
-            --row-hover: rgba(59,130,246,0.025); --radius: 1.25rem;
-            --ease-spring: cubic-bezier(0.22, 1, 0.36, 1); --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .accounts-wrapper { font-family: 'Outfit', sans-serif; color: var(--ink); }
+        /* HESAPLAR İÇERİK STİLLERİ (YENİ SİMETRİK TASARIM) */
+        .accounts-wrapper { font-family: 'Outfit', sans-serif; }
         .page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
-        .page-title { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: var(--ink); }
-        .page-subtitle { font-size: 0.875rem; color: var(--steel); margin-top: 0.375rem; font-weight: 400; }
+        .page-title { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: #ffffff; margin: 0; }
+        .page-subtitle { font-size: 0.875rem; color: #cbd5e1; margin-top: 0.375rem; font-weight: 400; }
         
         .count-badge {
-            background: var(--blue-bg); color: var(--blue); font-size: 0.75rem;
+            background: rgba(255, 196, 12, 0.1); color: #ffc40c; font-size: 0.75rem;
             font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 2rem;
-            letter-spacing: 0.01em; border: 1px solid var(--blue-soft); white-space: nowrap;
+            letter-spacing: 0.01em; border: 1px solid rgba(255, 196, 12, 0.3); white-space: nowrap;
         }
         
         .card {
-            background: var(--surface); border-radius: var(--radius);
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 2px var(--shadow), 0 40px 80px -20px rgba(0,0,0,0.06);
+            background: rgba(255, 255, 255, 0.04); border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden; overflow-x: auto;
         }
         
         table { width: 100%; border-collapse: collapse; min-width: 500px; }
-        thead tr { border-bottom: 1px solid var(--border); }
+        thead tr { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
         th {
-            padding: 0.875rem 1.25rem; text-align: left; font-size: 0.6875rem;
-            font-weight: 600; color: var(--muted); text-transform: uppercase;
-            letter-spacing: 0.07em; background: var(--canvas);
+            padding: 1rem 1.25rem; text-align: left; font-size: 0.75rem;
+            font-weight: 600; color: #94a3b8; text-transform: uppercase;
+            letter-spacing: 0.07em; background: rgba(0, 0, 0, 0.15);
         }
-        tbody tr { border-bottom: 1px solid var(--border); transition: background 200ms var(--ease-out); }
+        tbody tr { border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 200ms ease; }
         tbody tr:last-child { border-bottom: none; }
-        tbody tr:hover { background: var(--row-hover); }
-        td { padding: 0.875rem 1.25rem; font-size: 0.875rem; vertical-align: middle; }
+        tbody tr:hover { background: rgba(255, 196, 12, 0.1); }
+        td { padding: 1rem 1.25rem; font-size: 0.9rem; vertical-align: middle; color: #f8fafc; }
         
-        .app-name-txt { font-weight: 600; font-size: 0.9375rem; color: var(--ink); display: block; }
+        .app-name-txt { font-weight: 600; font-size: 0.95rem; color: #ffffff; display: block; }
         
         .cred-cell { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-width: 0; }
         .cred-text {
             font-family: 'Courier New', 'Lucida Console', monospace;
-            font-size: 0.8125rem; color: var(--ink); white-space: nowrap;
+            font-size: 0.85rem; color: #e2e8f0; white-space: nowrap;
             overflow: hidden; text-overflow: ellipsis; max-width: 200px; flex: 1;
         }
 
         .btn-icon {
             display: inline-flex; align-items: center; justify-content: center;
             width: 28px; height: 28px; border-radius: 0.375rem;
-            border: 1px solid var(--border); background: transparent; color: var(--steel);
+            border: 1px solid rgba(255, 255, 255, 0.15); background: transparent; color: #cbd5e1;
             cursor: pointer; flex-shrink: 0; transition: all 150ms ease;
         }
-        .btn-icon:hover { background: var(--blue-bg); border-color: var(--blue-soft); color: var(--blue); transform: scale(1.08); }
+        .btn-icon:hover { background: rgba(255, 196, 12, 0.2); border-color: #ffc40c; color: #ffc40c; transform: scale(1.08); }
         .btn-icon:active { transform: scale(0.95); }
         .btn-icon svg { width: 14px; height: 14px; pointer-events: none; }
-        .btn-icon.success { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.25); color: #16a34a; }
+        .btn-icon.success { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: #22c55e; }
 
         #toast {
             position: fixed; bottom: 1.75rem; left: 50%;
             transform: translateX(-50%) translateY(calc(100% + 2rem));
-            background: var(--ink); color: #fff; font-family: 'Outfit', sans-serif;
+            background: #18181b; color: #fff; font-family: 'Outfit', sans-serif;
             font-size: 0.8125rem; font-weight: 500; padding: 0.625rem 1.25rem;
-            border-radius: 2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            z-index: 10001; transition: transform 300ms var(--ease-spring), opacity 300ms;
+            border-radius: 2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            z-index: 10001; transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
             opacity: 0; pointer-events: none; white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
@@ -244,9 +234,8 @@
             .main-logo { height: 50px; }
             .modal-content { max-width: 95%; padding: 30px 20px; }
             .doc-item { font-size: 14px; padding: 12px 15px; }
-            
             .page-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-            .cred-text { max-width: 100px; }
+            .cred-text { max-width: 110px; }
         }
     </style>
 </head>
@@ -267,7 +256,7 @@
                 <span class="app-name">Dokümanlar</span>
             </a>
             
-            <a id="hesaplarBtn" class="app-card" style="border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.05);">
+            <a id="hesaplarBtn" class="app-card" style="border-color: rgba(255, 196, 12, 0.3); background: rgba(255, 196, 12, 0.05);">
                 <div class="app-logo" style="display:flex; justify-content:center; align-items:center; font-size:40px;">🔑</div>
                 <span class="app-name">Hesaplar</span>
             </a>
@@ -357,7 +346,7 @@
     </div>
 
     <div id="hesaplarModal" class="modal">
-        <div class="modal-content wide-modal">
+        <div class="modal-content">
             <span class="close-btn" data-close="hesaplarModal">&times;</span>
             
             <div class="accounts-wrapper">
@@ -389,7 +378,7 @@
     <div id="toast"></div>
 
     <script>
-        // --- 1. MODAL (PENCERE) AÇMA KAPAMA MANTIĞI ---
+        // --- 1. MODAL AÇMA KAPAMA MANTIĞI ---
         const modaller = document.querySelectorAll('.modal');
         const kapatmaButonlari = document.querySelectorAll('.close-btn');
 
@@ -409,7 +398,7 @@
             modaller.forEach(modal => { if (event.target == modal) { modal.style.display = "none"; } });
         };
 
-        // --- 2. TEMİZLENMİŞ HESAP TABLOSU VERİLERİ ---
+        // --- 2. HESAP TABLOSU VERİLERİ ---
         const apps = [
           { name: 'Clipdrop',        user: 'akademiclipdrop@gmail.com',       pass: 'Akademi2026'  },
           { name: 'Kahoot',          user: 'akademi_lst',                     pass: 'Egitim123.'   },
@@ -437,9 +426,7 @@
         apps.forEach((app) => {
           const tr = document.createElement('tr');
           tr.innerHTML = `
-            <td>
-              <span class="app-name-txt">${esc(app.name)}</span>
-            </td>
+            <td><span class="app-name-txt">${esc(app.name)}</span></td>
             <td>
               <div class="cred-cell">
                 <span class="cred-text" title="${esc(app.user)}">${esc(app.user)}</span>
